@@ -2,7 +2,10 @@
 int main(void){
 char string[100];
 printf("Enter any word: ");
-scanf(" %s", string);
+
+fgets(string, sizeof(string), stdin);
+string[strcspn(string, "\n")] = '\0';
+
 char temp='\0';
 temp=string[0];
 string[0]=string[1];
