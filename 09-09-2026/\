@@ -5,9 +5,9 @@
 #include<string.h>
 
 //The search function
-int search(char word[], char *alphabet, int n){
+int search(char *word[], char *alphabet, int n){
 for(int i=0; i<n; i++){
-if(&word[i]==alphabet){
+if(word[i]==alphabet){
 break;
 return i;
 }
@@ -16,7 +16,7 @@ continue;
 }
 
 }
-}
+return -1;}
 
 //Main program begins
 int main(void){
