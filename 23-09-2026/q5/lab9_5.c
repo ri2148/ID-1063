@@ -24,9 +24,11 @@ printf("Input: ");
 //Taking input
 scanf("%d", &n);
 double a[n];
+printf("Enter into array: ");
 for(int i=0; i<n; i++){
 scanf("%lf", &a[i]);
 }
+printf("Enter tolerance: ");
 double tolerance=0;
 scanf("%lf", &tolerance);
 //printing output
