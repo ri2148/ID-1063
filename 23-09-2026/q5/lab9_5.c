@@ -20,7 +20,7 @@ return -1; //If condition not met
 //main function begins
 int main(void){
 int n=0;
-printf("Input: ");
+printf("Input n: ");
 //Taking input
 scanf("%d", &n);
 double a[n];
