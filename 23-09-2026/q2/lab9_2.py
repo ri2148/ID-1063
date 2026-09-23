@@ -11,6 +11,7 @@ def days_elapsed(day: int, month: int) -> int:
     return d.timetuple().tm_yday
 
 
-day, month = map(int, input().split())
+day=int(input("Day: "))
+month=int(input("Month: "))
 print(days_elapsed(day, month))
 
