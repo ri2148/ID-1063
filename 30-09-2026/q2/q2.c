@@ -1,43 +1,80 @@
-//code by Arjun
-//date:30-09-2026
-#include <stdio.h>
-//main function
-int main(void) {
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+void uniform(char *str, int len)
+{
+int i;
+FILE *fp;
+
+fp = fopen(str,"w");
+//Generate numbers
+for (i = 0; i < len; i++)
+{
+fprintf(fp,"%lf\n",(double)rand()/RAND_MAX);
+}
+fclose(fp);
+
+}
+
+
+void binaryVector(int n)
+{
+double x;
+
+// Generate n random numbers using uniform() function
+uniform("binary.dat", n);
+
+FILE *fp = fopen("binary.dat", "r");
+
+// Convert the random numbers into 0 or 1
+for (int i = 0; i < n; i++)
+{
+fscanf(fp, "%lf", &x);
+
+if (x < 0.5)
+printf("0");
+else
+printf("1");
+}
+printf("\n");
+
+
+fclose(fp);
+}
+
+void binaryMatrix(int n, int m)
+{
+double x;
+
+// Generate n * m random numbers using uniform() function
+uniform("binary.dat", n * m);
+
+FILE *fp = fopen("binary.dat", "r");
+
+// Convert the random numbers into 0 or 1 and print as n x m matrix
+for (int i = 0; i < n; i++)
+{
+for (int j = 0; j < m; j++)
+{
+fscanf(fp, "%lf", &x);
+
+if (x < 0.5)
+printf("0 ");
+else
+printf("1 ");
+}
+printf("\n");
+}
+
+fclose(fp);
+}
+
+int main(){
+srand(time(NULL));
+printf("Enter n and m: ");
 int n, m;
-
-if (scanf("%d %d", &n, &m) != 2) return 0;
-int grid[100][100];
-for (int i = 0; i < n; i++) {
-for (int j = 0; j < m; j++) {
-scanf("%d", &grid[i][j]);
-}
-}
-
-//Direction arrays for all 8 neighbors
-int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            if (grid[i][j] == 1) {
-                printf("-1");
-            } else {
-                int mine_count = 0;
-                for (int d = 0; d < 8; d++) {
-                    int ni = i + dx[d];
-                    int nj = j + dy[d];
-                    if (ni >= 0 && ni < n && nj >= 0 && nj < m) {
-                        if (grid[ni][nj] == 1) {
-                            mine_count++;
-                        }
-                    }
-                }
-                printf("%d", mine_count);
-            }
-        }
-        printf("\n");
-    }
-
-    return 0;
+scanf("%d %d",&n, &m);
+binaryMatrix(n, m);
 }
 
